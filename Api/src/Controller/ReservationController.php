@@ -51,7 +51,7 @@ class ReservationController extends AbstractController
     }
 
 
-    #[Route('/reservations/read', name: 'api_reservation_index', methods: ['GET'])]
+    #[Route('/reservation/read', name: 'api_reservation_index', methods: ['GET'])]
     public function index(EntityManagerInterface $em): JsonResponse
     {
         $reservations = $em->getRepository(Reservation::class)->findAll();
@@ -60,9 +60,10 @@ class ReservationController extends AbstractController
             $data = array_map(function ($reservation) {
                 return [
                     'id' => $reservation->getId(),
-                    'date' => $reservation->getDate(),
-                    'timeSlot' => $reservation->getTimeSlotStart() . "-" . $reservation->getTimeSlotEnd(),
-                    'nameEvent' => $reservation->getEventName()
+                    'date' => $reservation->getDate()->format('Y-m-d'),
+                    'timeSlot' => $reservation->getTimeSlotStart()->format('H:i') . "-" . $reservation->getTimeSlotEnd()->format('H:i'),
+                    'nameEvent' => $reservation->getEventName(),
+                    'user' => $reservation->getRelation()->getName()
                 ];
             }, $reservations);
 
@@ -80,9 +81,10 @@ class ReservationController extends AbstractController
         if ($reservation) {
             $data = [
                 'id' => $reservation->getId(),
-                'date' => $reservation->getDate(),
-                'timeSlot' => $reservation->getTimeSlotStart() . "-" . $reservation->getTimeSlotEnd(),
-                'nameEvent' => $reservation->getEventName()
+                'date' => $reservation->getDate()->format('Y-m-d'),
+                'timeSlot' => $reservation->getTimeSlotStart()->format('H:i') . "-" . $reservation->getTimeSlotEnd()->format('H:i'),
+                'nameEvent' => $reservation->getEventName(),
+                'user' => $reservation->getRelation()->getName()
             ];
 
             return $this->json(['message' => 'Information de la réservation :', 'data' => [$data]], Response::HTTP_OK);

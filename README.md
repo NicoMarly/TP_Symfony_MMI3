@@ -22,6 +22,6 @@ Ceci étant dis, voici la notice d'utilisation et d'installation de cette applic
 - L'adresse IP du serveur symfony est généralement 127.0.0.1:8000 (le port peut changer si d'autre serveur symfony sont en cours d'exécution)
 - Les routes a utilisé se décompose de la manière suivante : /nom_de_la_table/id (si il y en a un)/nom_de_la_method (create, read, update ou delete)
 - Attention ! Les méthodes update et delete nécessite obligatoirement un id pour fonctionner, la méthode read demande un id si vous cherchez un élément spécifique de la table.
-- Pour les méthodes create et update, des informations sont nécessaires (format précisé plus loin)
-- Pour commencer avec l'application, deux fichiers d'exemples vous sont fournis dans le repository.
-
+- Pour les méthodes create et update, des informations sont nécessaires
+- Pour commencer avec l'application, deux fichiers d'exemples vous sont fournis dans le repository
+- En suivant leur format, vous serez en mesure d'utilisez l'application
